@@ -1,33 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(120deg, #89f7fe, #66a6ff);
+    margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+
+    /* Анимированный холодный градиент */
+    background: linear-gradient(
+        -45deg,
+        #0f2027,
+        #203a43,
+        #2c5364,
+        #1c92d2
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
 }
+
+/* Анимация переливания */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Контейнер формы */
 .container {
-    background: white;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 320px;
     text-align: center;
-    width: 300px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+    /* Анимация выезда */
+    transform: translateY(100px);
+    opacity: 0;
+    animation: slideUp 1s ease forwards;
 }
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
+
+/* Плавное появление снизу */
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
-button {
-    border: none;
-    background: #66a6ff;
+
+h1 {
     color: white;
-    font-weight: bold;
-    cursor: pointer;
+    margin-bottom: 20px;
 }
+
+/* Поля ввода */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #1c92d2;
+}
+
+/* Кнопка */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #1c92d2, #2c5364);
+    transition: 0.3s;
+}
+
 button:hover {
-    background: #89f7fe;
+    transform: scale(1.07);
+    background: linear-gradient(90deg, #2c5364, #1c92d2);
 }

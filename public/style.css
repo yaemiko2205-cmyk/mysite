@@ -14,10 +14,10 @@ body {
     /* Анимированный холодный градиент */
     background: linear-gradient(
         -45deg,
-        #0f2027,
-        #203a43,
-        #2c5364,
-        #1c92d2
+        #101128,
+        #0c0d0d,
+        #090443,
+        #0f4e70
     );
     background-size: 400% 400%;
     animation: gradientMove 10s ease infinite;

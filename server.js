@@ -64,7 +64,6 @@ body {
         #090443,
         #0f4e70
     );
-
     background-size: 400% 400%;
     animation: gradientMove 12s linear infinite;
 }
@@ -72,7 +71,8 @@ body {
 /* Теперь он НЕ возвращается назад */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
-    100% { background-position: 400% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Стеклянная карточка */

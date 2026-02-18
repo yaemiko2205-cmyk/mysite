@@ -8,46 +8,60 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     overflow: hidden;
 
-    /* Анимированный холодный градиент */
+    /* Мягкий холодный Apple-градиент */
     background: linear-gradient(
         -45deg,
         #101128,
         #0c0d0d,
         #090443,
-        #0f4e70
+	#0f4e70
     );
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
 }
 
-/* Анимация переливания */
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Лёгкое свечение фона */
+body::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+    top: -200px;
+    right: -200px;
+    filter: blur(80px);
 }
 
-/* Контейнер формы */
 .container {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(15px);
+    position: relative;
+    width: 340px;
     padding: 40px;
-    border-radius: 20px;
-    width: 320px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 
-    /* Анимация выезда */
-    transform: translateY(100px);
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border-radius: 24px;
+
+    /* Apple-style border */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* Мягкая тень */
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 1px rgba(255,255,255,0.3);
+
+    text-align: center;
+
+    /* Плавное появление */
+    transform: translateY(50px);
     opacity: 0;
-    animation: slideUp 1s ease forwards;
+    animation: fadeSlide 1s ease forwards;
 }
 
-/* Плавное появление снизу */
-@keyframes slideUp {
+@keyframes fadeSlide {
     to {
         transform: translateY(0);
         opacity: 1;
@@ -56,39 +70,71 @@ body {
 
 h1 {
     color: white;
-    margin-bottom: 20px;
+    font-weight: 500;
+    margin-bottom: 25px;
 }
 
 /* Поля ввода */
 input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
+    padding: 14px;
+    margin: 12px 0;
+
+    border-radius: 14px;
     border: none;
     outline: none;
-    transition: 0.3s;
+
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 14px;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.7);
 }
 
 input:focus {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #1c92d2;
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
-/* Кнопка */
+/* Кнопка Apple style */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
+    margin-top: 15px;
+
+    border-radius: 14px;
     border: none;
-    border-radius: 10px;
+
+    font-weight: 600;
+    font-size: 15px;
+
     cursor: pointer;
-    font-weight: bold;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.25),
+        rgba(255,255,255,0.1)
+    );
+
     color: white;
-    background: linear-gradient(90deg, #1c92d2, #2c5364);
-    transition: 0.3s;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
 }
 
 button:hover {
-    transform: scale(1.07);
-    background: linear-gradient(90deg, #2c5364, #1c92d2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }

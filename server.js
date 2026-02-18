@@ -34,10 +34,115 @@ app.post("/submit", async (req, res) => {
             [username, password]
         );
 
-        res.send(`
-            <h2>Данные успешно сохранены!</h2>
-            <a href="/">Вернуться к форме</a>
-        `);
+res.send(`
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Успешно</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow: hidden;
+
+    /* ТВОЙ ГРАДИЕНТ */
+    background: linear-gradient(
+        -45deg,
+        #101128,
+        #0c0d0d,
+        #090443,
+        #0f4e70
+    );
+
+    background-size: 400% 400%;
+    animation: gradientMove 12s linear infinite;
+}
+
+/* Теперь он НЕ возвращается назад */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+/* Стеклянная карточка */
+.card {
+    width: 340px;
+    padding: 45px;
+    text-align: center;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.5),
+        inset 0 0 1px rgba(255,255,255,0.3);
+
+    color: white;
+
+    transform: translateY(40px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h2 {
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+a {
+    display: inline-block;
+    padding: 14px 22px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
+}
+
+a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+    <h2>Данные успешно сохранены ✅</h2>
+    <a href="/">Вернуться назад</a>
+</div>
+
+</body>
+</html>
+`);
+
 
     } catch (err) {
         console.error(err);
